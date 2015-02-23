@@ -28,6 +28,16 @@ cacheSolve <- function(x) {
                 return(cache)
         }
         data <- x$get()
+        #test if data is a matrix
+        if (!is.matrix(data)){
+            message("argument is not a matrix")
+            return(NULL)
+        }
+        #test if the matrix is symmetrical
+        if (!isSymmetric(data)){
+            message("matrix is not symmetrical")
+            return(NULL)
+        }
         cache <- solve(data)
         x$setInv(cache)
         cache
